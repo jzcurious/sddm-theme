@@ -37,6 +37,12 @@ Control {
                 id: passField
                 placeholderText: "Password"
                 echoMode: TextInput.Password
+
+                onAccepted: {
+                    if (passField.text !== "") {
+                        sddm.login(userField.text, passField.text, sessionBox.index)
+                    }
+                }
             }
 
             GlassButton {
