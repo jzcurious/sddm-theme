@@ -4,6 +4,6 @@ Comment=SDDM theme by jzcurious
 Type=X-SDDM-Theme
 
 [SddmGreeterTheme]
-MainScript=Main.qml
+MainScript=src/Main.qml
 ConfigFile=theme.conf
 QtVersion=6
