@@ -1,12 +1,11 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick 2.3
+import QtQuick.Controls 2.3
 import SddmComponents 2.0
 
 Rectangle {
     id: root
     width: Screen.width
     height: Screen.height
-    color: "#1e1e2e"
 
     Image {
         anchors.fill: parent
@@ -18,22 +17,82 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 12
 
-        TextField {
-            id: userField
-            width: 300
-            placeholderText: "Пользователь"
+        Row {
+            spacing: 10
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: "User"
+                font.pixelSize: 14
+                width: 80
+            }
+
+            TextField {
+                id: userField
+                width: 250
+                height: 45
+                placeholderText: "Type name..."
+
+                background: Rectangle {
+                    radius: 8
+                    border.width: 2
+                }
+            }
         }
 
-        TextField {
-            id: passField
-            width: 300
-            placeholderText: "Пароль"
-            echoMode: TextInput.Password
+        Row {
+            spacing: 10
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: "Password"
+                font.pixelSize: 14
+                width: 80
+            }
+
+            TextField {
+                id: passField
+                width: 250
+                height: 45
+                placeholderText: "Type password..."
+                echoMode: TextInput.Password
+
+                background: Rectangle {
+                    radius: 8
+                    border.width: 2
+                }
+            }
         }
 
-        Button {
-            text: "Войти"
+        RoundButton {
+            text: "Login"
+            width: parent.width
             onClicked: sddm.login(userField.text, passField.text, sessionBox.index)
+        }
+
+        Row {
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 10
+
+            RoundButton {
+                text: "Shutdown"
+                onClicked: sddm.powerOff()
+            }
+
+            RoundButton {
+                text: "Reboot"
+                onClicked: sddm.reboot()
+            }
+
+            RoundButton {
+                text: "Hibernate"
+                onClicked: sddm.hibernate()
+            }
+
+            RoundButton {
+                text: "Suspend"
+                onClicked: sddm.suspend()
+            }
         }
     }
 
