@@ -21,9 +21,10 @@ Rectangle {
             spacing: 10
 
             Text {
+                font.family: "Hasklug Nerd Font"
                 anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: config.label_font_size
                 text: "User"
-                font.pixelSize: 14
                 width: 80
             }
 
@@ -37,6 +38,8 @@ Rectangle {
                     radius: 8
                     border.width: 2
                 }
+
+                font.family: "Hasklug Nerd Font"
             }
         }
 
@@ -44,9 +47,10 @@ Rectangle {
             spacing: 10
 
             Text {
+                font.family: "Hasklug Nerd Font"
                 anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: config.label_font_size
                 text: "Password"
-                font.pixelSize: 14
                 width: 80
             }
 
@@ -61,13 +65,17 @@ Rectangle {
                     radius: 8
                     border.width: 2
                 }
+
+                font.family: "Hasklug Nerd Font"
             }
+
         }
 
         RoundButton {
             text: "Login"
             width: parent.width
             onClicked: sddm.login(userField.text, passField.text, sessionBox.index)
+            font.family: "Hasklug Nerd Font"
         }
 
         Row {
@@ -75,23 +83,43 @@ Rectangle {
             spacing: 10
 
             RoundButton {
-                text: "Shutdown"
+                icon.source: "./assets/Shutdown.svg"
                 onClicked: sddm.powerOff()
+
+                ToolTip.visible: hovered
+                ToolTip.text: "Shutdown"
+                ToolTip.delay: 500
+                ToolTip.timeout: 3000
             }
 
             RoundButton {
-                text: "Reboot"
+                icon.source: "./assets/Reboot.svg"
                 onClicked: sddm.reboot()
+
+                ToolTip.visible: hovered
+                ToolTip.text: "Reboot"
+                ToolTip.delay: 500
+                ToolTip.timeout: 3000
             }
 
             RoundButton {
-                text: "Hibernate"
+                icon.source: "./assets/Hibernate.svg"
                 onClicked: sddm.hibernate()
+
+                ToolTip.visible: hovered
+                ToolTip.text: "Hibernate"
+                ToolTip.delay: 500
+                ToolTip.timeout: 3000
             }
 
             RoundButton {
-                text: "Suspend"
+                icon.source: "./assets/Suspend.svg"
                 onClicked: sddm.suspend()
+
+                ToolTip.visible: hovered
+                ToolTip.text: "Suspend"
+                ToolTip.delay: 500
+                ToolTip.timeout: 3000
             }
         }
     }
