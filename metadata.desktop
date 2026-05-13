@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=My Theme
+Comment=SDDM theme by jzcurious
+Type=X-SDDM-Theme
+
+[SddmGreeterTheme]
+MainScript=Main.qml
+ConfigFile=theme.conf
+QtVersion=6
