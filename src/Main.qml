@@ -16,8 +16,8 @@ Control {
 
     Rectangle {
         anchors.centerIn: parent
-        width: 350
-        height: 400
+        width: Screen.width / 4
+        height: Screen.height * 0.45
         radius: 20
         color: Qt.rgba(0, 0, 0, 0.85)
         border.color: Qt.rgba(0, 0, 0, 1.0)
@@ -25,97 +25,106 @@ Control {
 
         Column {
             anchors.centerIn: parent
-            spacing: 12
+            spacing: 40
 
-            GlassField {
-                id: userField
-                placeholderText: "Username"
-            }
+            Row{
+                Column {
+                    spacing: 12
 
+                    GlassField {
+                        id: userField
+                        placeholderText: "Username"
+                        text: userModel.lastUser
+                    }
 
-            GlassField {
-                id: passField
-                placeholderText: "Password"
-                echoMode: TextInput.Password
+                    GlassField {
+                        id: passField
+                        placeholderText: "Password"
+                        echoMode: TextInput.Password
 
-                onAccepted: {
-                    if (passField.text !== "") {
-                        sddm.login(userField.text, passField.text, sessionBox.index)
+                        onAccepted: {
+                            if (passField.text !== "") {
+                                sddm.login(userField.text, passField.text, sessionBox.index)
+                            }
+                        }
+                    }
+
+                    GlassButton {
+                        text: "Log in"
+                        width: parent.width
+                        onClicked: sddm.login(userField.text, passField.text, sessionBox.index)
                     }
                 }
-            }
-
-            GlassButton {
-                text: "Log in"
-                height: 45
-                width: parent.width
-                onClicked: sddm.login(userField.text, passField.text, sessionBox.index)
             }
 
             Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 22
+                Column {
+                    spacing: 12
 
-                GlassButton {
-                    width: 45
-                    height: 45
-                    glassRadius: 50
-                    iconSource: "../assets/Shutdown.svg"
-                    onClicked: sddm.powerOff()
+                    Row {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        spacing: 22
 
-                    GlassToolTip {
-                        visible: parent.hovered
-                        text: "Shutdown"
+                        GlassButton {
+                            width: 45
+                            height: 45
+                            glassRadius: 50
+                            iconSource: "../assets/Shutdown.svg"
+                            onClicked: sddm.powerOff()
+
+                            GlassToolTip {
+                                visible: parent.hovered
+                                text: "Shutdown"
+                            }
+                        }
+
+                        GlassButton {
+                            width: 45
+                            height: 45
+                            glassRadius: 50
+                            iconSource: "../assets/Reboot.svg"
+                            onClicked: sddm.reboot()
+
+                            GlassToolTip {
+                                visible: parent.hovered
+                                text: "Reboot"
+                            }
+                        }
+
+                        GlassButton {
+                            width: 45
+                            height: 45
+                            glassRadius: 50
+                            iconSource: "../assets/Hibernate.svg"
+                            onClicked: sddm.hibernate()
+
+                            GlassToolTip {
+                                visible: parent.hovered
+                                text: "Hibernate"
+                            }
+                        }
+
+                        GlassButton {
+                            width: 45
+                            height: 45
+                            glassRadius: 50
+                            iconSource: "../assets/Suspend.svg"
+                            onClicked: sddm.suspend()
+
+                            GlassToolTip {
+                                visible: parent.hovered
+                                text: "Suspend"
+                            }
+                        }
+                    }
+
+                    GlassComboBox {
+                        id: sessionBox
+                        model: sessionModel
+                        currentIndex: sessionModel.lastIndex
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
-
-                GlassButton {
-                    width: 45
-                    height: 45
-                    glassRadius: 50
-                    iconSource: "../assets/Reboot.svg"
-                    onClicked: sddm.reboot()
-
-                    GlassToolTip {
-                        visible: parent.hovered
-                        text: "Reboot"
-                    }
-                }
-
-                GlassButton {
-                    width: 45
-                    height: 45
-                    glassRadius: 50
-                    iconSource: "../assets/Hibernate.svg"
-                    onClicked: sddm.hibernate()
-
-                    GlassToolTip {
-                        visible: parent.hovered
-                        text: "Hibernate"
-                    }
-                }
-
-                GlassButton {
-                    width: 45
-                    height: 45
-                    glassRadius: 50
-                    iconSource: "../assets/Suspend.svg"
-                    onClicked: sddm.suspend()
-
-                    GlassToolTip {
-                        visible: parent.hovered
-                        text: "Suspend"
-                    }
-                }
-            }
-
-            GlassComboBox {
-                id: sessionBox
-                model: sessionModel
-                currentIndex: sessionModel.lastIndex
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width
-                height: 45
             }
         }
     }

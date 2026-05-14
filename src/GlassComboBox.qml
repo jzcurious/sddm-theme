@@ -5,6 +5,9 @@ import Qt5Compat.GraphicalEffects
 ComboBox {
     id: root
 
+    width: 350
+    height: 45
+
     property color textColor:        "white"
     property color glassColor:       Qt.rgba(1, 1, 1, 0.10)
     property color glassColorHover:  Qt.rgba(1, 1, 1, 0.20)

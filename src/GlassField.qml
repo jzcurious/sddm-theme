@@ -5,8 +5,9 @@ import Qt5Compat.GraphicalEffects
 TextField {
     id: root
 
-    width: 250
+    width:350
     height: 45
+    horizontalAlignment: TextInput.AlignHCenter
 
     property color textColor: "white"
     property color glassColor: Qt.rgba(1, 1, 1, 0.15)
