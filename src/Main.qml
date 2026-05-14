@@ -42,6 +42,8 @@ Control {
                         placeholderText: "Password"
                         echoMode: TextInput.Password
 
+                        focus: text === ""
+
                         onAccepted: {
                             if (passField.text !== "") {
                                 sddm.login(userField.text, passField.text, sessionBox.index)
