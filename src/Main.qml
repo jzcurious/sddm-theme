@@ -35,14 +35,14 @@ Control {
                         id: userField
                         placeholderText: "Username"
                         text: userModel.lastUser
+                        onAccepted: passField.forceActiveFocus()
                     }
 
                     GlassField {
                         id: passField
                         placeholderText: "Password"
                         echoMode: TextInput.Password
-
-                        focus: text === ""
+                        focus: true
 
                         onAccepted: {
                             if (passField.text !== "") {
